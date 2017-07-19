@@ -1,0 +1,9 @@
+[run]
+parallel = true
+branch = true
+source = os_fast_reservoir
+
+[paths]
+source =
+    src/os_fast_reservoir
+    .tox/*/lib/python*/site-packages/os_fast_reservoir
