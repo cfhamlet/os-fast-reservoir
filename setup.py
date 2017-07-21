@@ -26,6 +26,11 @@ setup(
     author_email='cfhamlet@gmail.com',
     url='https://github.com/cfhamlet/os-fast-reservoir',
     zip_safe=False,
+    entry_points={
+        'console_scripts': [
+            'os-fast-reservoir = os_fast_reservoir.cmdline:execute'
+        ]
+    },
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
