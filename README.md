@@ -8,6 +8,7 @@ Python implementation of fast approximation reservioir sampling.
   `$ pip install os-fast-reservoir`
 
 # Usage
+  * API
   ```
     from os_fast_reservoir import ReservoirSampling
 
@@ -18,6 +19,19 @@ Python implementation of fast approximation reservioir sampling.
 
     for i in rs:
         print i
+  ```
+  * Command line
+  ```
+    $ os-fast-reservoir -h
+    usage: os-fast-reservoir [-h] [-f INPUT_FILE] -n NUM
+
+    Reservoir sample tool.
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -f INPUT_FILE, --file INPUT_FILE
+                            file to be sampled (default: stdin)
+      -n NUM, --num NUM     sample number
   ```
 
 # Algorithm
