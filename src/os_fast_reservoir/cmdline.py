@@ -1,8 +1,9 @@
+#!/usr/bin/env python
 from __future__ import print_function
 import os
 import sys
 import argparse
-from reservoir import ReservoirSampling
+from .reservoir import ReservoirSampling
 
 
 def check_exist(value):
