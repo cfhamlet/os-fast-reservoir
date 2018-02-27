@@ -26,19 +26,20 @@ def call(cmdline, env=None, **kwargs):
 def test_cmdline(tmpdir):
     f = tmpdir.join('testfile')
     f.write('\n'.join([str(i) for i in range(100)]))
-    cmdline = '-n 3 -f %s' % f.strpath
+    n = 10
+    cmdline = '-n %d -f %s' % (n, f.strpath)
     stdout, stderr = call(cmdline)
-    assert stdout.count('\n') == 3
+    assert stdout.count(b'\n') == n
 
 
 def test_invalid_cmdline():
     cmdline = '-n a'
     stdout, stderr = call(cmdline)
-    assert 'must assign a positive int value' in stderr
+    assert b'must assign a positive int value' in stderr
 
     cmdline = '-f not_exist'
     stdout, stderr = call(cmdline)
-    assert 'must an exist file' in stderr
+    assert b'must an exist file' in stderr
 
 
 if __name__ == "__main__":

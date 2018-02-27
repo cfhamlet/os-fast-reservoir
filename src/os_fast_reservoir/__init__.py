@@ -1,5 +1,5 @@
 import sys
-from reservoir import ReservoirSampling
+from .reservoir import ReservoirSampling
 
 __all__ = ['__version__', 'version_info', 'ReservoirSampling']
 
