@@ -1,6 +1,8 @@
 # os-fast-reservoir
 [![Build Status](https://www.travis-ci.org/cfhamlet/os-fast-reservoir.svg?branch=master)](https://www.travis-ci.org/cfhamlet/os-fast-reservoir)
 [![codecov](https://codecov.io/gh/cfhamlet/os-fast-reservoir/branch/master/graph/badge.svg)](https://codecov.io/gh/cfhamlet/os-fast-reservoir)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/os-fast-reservoir.svg)](https://pypi.python.org/pypi/os-fast-reservoir)
+[![PyPI](https://img.shields.io/pypi/v/os-fast-reservoir.svg)](https://pypi.python.org/pypi/os-fast-reservoir)
 
 Python implementation of fast approximation reservioir sampling.
 
