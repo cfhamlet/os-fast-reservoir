@@ -40,7 +40,7 @@ Python implementation of fast approximation reservioir sampling.
   * [Reservoir sampling](https://en.wikipedia.org/wiki/Reservoir_sampling)
   * [Faster Random Samples With Gap Sampling](http://erikerlandson.github.io/blog/2014/09/11/faster-random-samples-with-gap-sampling/)
   * [Very Fast Reservoir Sampling](http://erikerlandson.github.io/blog/2015/11/20/very-fast-reservoir-sampling/)
-  * Implementation: [alexprengere/reservoir](https://github.com/alexprengere/reservoir)
+  * Another implementation: [alexprengere/reservoir](https://github.com/alexprengere/reservoir)
 
 # Unit Tests
   `$ tox`
