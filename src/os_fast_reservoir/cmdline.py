@@ -1,9 +1,13 @@
 #!/usr/bin/env python
 from __future__ import print_function
+
+import argparse
 import os
 import sys
-import argparse
+
 from .reservoir import ReservoirSampling
+
+PY3 = sys.version_info[0] == 3
 
 
 def check_exist(value):
@@ -24,6 +28,24 @@ def check_positive(value):
     return ivalue
 
 
+def _get_input(args):
+    io_input = sys.stdin
+    if PY3:
+        io_input = sys.stdin.buffer
+
+    if args.input_file:
+        io_input = open(args.input_file, 'rb')
+
+    return io_input
+
+
+def _get_output(args):
+    io_output = sys.stdout
+    if PY3:
+        io_output = sys.stdout.buffer
+    return io_output
+
+
 def execute(argv=None):
     argv = argv or sys.argv
     parser = argparse.ArgumentParser(description='Reservoir sample tool.')
@@ -35,10 +57,9 @@ def execute(argv=None):
                         required=True)
     args = parser.parse_args(argv[1:])
     sample = ReservoirSampling(args.num)
-    input_file = sys.stdin
-    if args.input_file:
-        input_file = open(args.input_file, 'r')
-    for line in input_file:
+    io_input = _get_input(args)
+    for line in io_input:
         sample.sample(line)
+    io_output = _get_output(args)
     for line in sample:
-        print(line, end='')
+        io_output.write(line)
