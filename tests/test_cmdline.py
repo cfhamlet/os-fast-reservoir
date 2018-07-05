@@ -39,7 +39,7 @@ def test_invalid_cmdline():
 
     cmdline = '-f not_exist'
     stdout, stderr = call(cmdline)
-    assert b'must an exist file' in stderr
+    assert b'No such file or directory' in stderr
 
 
 if __name__ == "__main__":

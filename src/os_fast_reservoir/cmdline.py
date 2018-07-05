@@ -1,21 +1,18 @@
 #!/usr/bin/env python
-from __future__ import print_function
 
 import argparse
-import os
 import sys
 
+from . import __version__
 from .reservoir import ReservoirSampling
 
-PY3 = sys.version_info[0] == 3
-
-
-def check_exist(value):
-    if not value:
-        return value
-    if not os.path.isfile(value):
-        raise argparse.ArgumentTypeError('must an exist file')
-    return value
+_PY3 = sys.version_info[0] == 3
+if _PY3:
+    binary_stdin = sys.stdin.buffer
+    binary_stdout = sys.stdout.buffer
+else:
+    binary_stdin = sys.stdin
+    binary_stdout = sys.stdout
 
 
 def check_positive(value):
@@ -49,17 +46,25 @@ def _get_output(args):
 def execute(argv=None):
     argv = argv or sys.argv
     parser = argparse.ArgumentParser(description='Reservoir sample tool.')
-    parser.add_argument(
-        '-f', '--file', help='file to be sampled (default: stdin)',
-        type=check_exist, action='store', dest='input_file')
-    parser.add_argument('-n', '--num', help='sample number',
-                        type=check_positive, action='store', dest='num',
+    parser.add_argument('-v', '--version',
+                        action='version',
+                        version='%(prog)s {version}'.format(version=__version__))
+    parser.add_argument('-f', '--file',
+                        help='file to be sampled (default: stdin)',
+                        nargs='+',
+                        type=argparse.FileType('rb'),
+                        default=[binary_stdin],
+                        dest='input')
+    parser.add_argument('-n', '--num',
+                        help='sample number',
+                        type=check_positive,
+                        action='store',
+                        dest='num',
                         required=True)
+
     args = parser.parse_args(argv[1:])
     sample = ReservoirSampling(args.num)
-    io_input = _get_input(args)
-    for line in io_input:
+    for line in args.input[0]:
         sample.sample(line)
-    io_output = _get_output(args)
     for line in sample:
-        io_output.write(line)
+        binary_stdout.write(line)
