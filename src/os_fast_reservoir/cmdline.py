@@ -36,13 +36,6 @@ def _get_input(args):
     return io_input
 
 
-def _get_output(args):
-    io_output = sys.stdout
-    if PY3:
-        io_output = sys.stdout.buffer
-    return io_output
-
-
 def execute(argv=None):
     argv = argv or sys.argv
     parser = argparse.ArgumentParser(description='Reservoir sample tool.')
