@@ -48,7 +48,7 @@ def execute(argv=None):
                         nargs='+',
                         type=argparse.FileType('rb'),
                         default=[binary_stdin],
-                        dest='inputs')
+                        dest='files')
     parser.add_argument('-n', '--num',
                         help='sample number',
                         type=check_positive,
@@ -58,7 +58,7 @@ def execute(argv=None):
 
     args = parser.parse_args(argv[1:])
     sample = ReservoirSampling(args.num)
-    for line in chain.from_iterable(args.inputs):
+    for line in chain.from_iterable(args.files):
         sample.sample(line)
     for line in sample:
         binary_stdout.write(line)

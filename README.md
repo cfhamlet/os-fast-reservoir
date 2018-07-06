@@ -25,15 +25,15 @@ Python implementation of fast approximation reservioir sampling.
   * Command line
   ```
     $ os-fast-reservoir -h
-    usage: os-fast-reservoir [-h] [-v] [-f INPUT_FILE] -n NUM
+    usage: os-fast-reservoir [-h] [-v] [-f FILES [FILES ...]] -n NUM
 
     Reservoir sample tool.
 
     optional arguments:
       -h, --help            show this help message and exit
       -v, --version         show program's version number and exit
-      -f INPUT_FILE, --file INPUT_FILE
-                            file to be sampled (default: stdin)
+      -f FILES [FILES ...], --files FILES [FILES ...]
+                            files to be sampled (default: stdin)
       -n NUM, --num NUM     sample number
   ```
 
