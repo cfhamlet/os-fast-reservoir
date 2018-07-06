@@ -2,6 +2,7 @@
 
 import argparse
 import sys
+from itertools import chain
 
 from . import __version__
 from .reservoir import ReservoirSampling
@@ -42,12 +43,12 @@ def execute(argv=None):
     parser.add_argument('-v', '--version',
                         action='version',
                         version='%(prog)s {version}'.format(version=__version__))
-    parser.add_argument('-f', '--file',
-                        help='file to be sampled (default: stdin)',
+    parser.add_argument('-f', '--files',
+                        help='files to be sampled (default: stdin)',
                         nargs='+',
                         type=argparse.FileType('rb'),
                         default=[binary_stdin],
-                        dest='input')
+                        dest='inputs')
     parser.add_argument('-n', '--num',
                         help='sample number',
                         type=check_positive,
@@ -57,7 +58,7 @@ def execute(argv=None):
 
     args = parser.parse_args(argv[1:])
     sample = ReservoirSampling(args.num)
-    for line in args.input[0]:
+    for line in chain.from_iterable(args.inputs):
         sample.sample(line)
     for line in sample:
         binary_stdout.write(line)
